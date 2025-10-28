@@ -10,13 +10,6 @@ public sealed class ObjectController : MonoBehaviour
 
     float _progress;
 
-    void Update()
-    {
-        if (!GetComponent<NetworkTransform>().CanCommitToTransform) return;
-        _progress = Mathf.Repeat(_progress + _speed * Time.deltaTime, Perimeter);
-        transform.position = EvaluateOffset();
-    }
-
     Vector3 EvaluateOffset()
     {
         var width = _pathSize.x;
@@ -36,5 +29,14 @@ public sealed class ObjectController : MonoBehaviour
 
         segment -= width;
         return new Vector3(-0.5f * width, 0f, -0.5f * depth + segment);
+    }
+
+    void Start()
+      => enabled = GetComponent<NetworkTransform>().IsServer;
+
+    void Update()
+    {
+        _progress = (_progress + _speed * Time.deltaTime) % Perimeter;
+        transform.position = EvaluateOffset();
     }
 }
