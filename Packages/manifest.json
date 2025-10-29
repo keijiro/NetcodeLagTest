@@ -4,6 +4,7 @@
     "com.unity.multiplayer.tools": "2.2.6",
     "com.unity.netcode.gameobjects": "2.6.0",
     "com.unity.render-pipelines.universal": "17.0.4",
+    "jp.keijiro.klak.math": "2.1.0",
     "jp.keijiro.klak.ui-toolkit-assets": "0.2.0",
     "jp.keijiro.klutter-tools": "2.4.3",
     "jp.keijiro.metawire": "2.1.1",
