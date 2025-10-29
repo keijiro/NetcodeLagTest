@@ -23,7 +23,7 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
         _lastPosition = position;
         _lastReceiveTime = now;
 
-        _offsetXform.localPosition = Vector3.zero;
+        _offsetXform.localPosition = _lastVelocity * Time.deltaTime;
     }
 
     void Update()
