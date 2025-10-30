@@ -13,12 +13,13 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
     {
         base.OnNetworkTransformStateUpdated(ref oldState, ref newState);
 
-        var tickDiff = newState.GetNetworkTick() - oldState.GetNetworkTick();
-        var timeDiff = tickDiff / (float)NetworkManager.NetworkConfig.TickRate;
+        var tickRate = (float)NetworkManager.NetworkConfig.TickRate;
 
-        _velocity = (newState.GetPosition() - oldState.GetPosition()) / timeDiff;
+        var dt = (newState.GetNetworkTick() - oldState.GetNetworkTick()) / tickRate;
+        _velocity = (newState.GetPosition() - oldState.GetPosition()) / dt;
 
-        _offsetXform.localPosition = _velocity * (timeDiff - Time.deltaTime);
+        var latency = GetTickLatency() / tickRate;
+        _offsetXform.localPosition = _velocity * (latency - Time.deltaTime);
 
         _markerPool.PutMarker(newState.GetPosition());
     }
