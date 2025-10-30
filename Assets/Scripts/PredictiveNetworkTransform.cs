@@ -23,12 +23,16 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
         _lastPosition = position;
         _lastReceiveTime = now;
 
-        _offsetXform.localPosition = _lastVelocity * Time.deltaTime;
+        var tickLatency = GetTickLatency();
+        var tickRate = NetworkManager.NetworkConfig.TickRate;
+        var latencyInSeconds = tickLatency / (float)tickRate;
+
+        _offsetXform.localPosition = _lastVelocity * (latencyInSeconds - Time.deltaTime);
     }
 
     void Update()
     {
-        if (IsServer || _lastReceiveTime <= 0) return;
+        if (IsServer) return;
 
         _offsetXform.localPosition += _lastVelocity * Time.deltaTime;
     }
