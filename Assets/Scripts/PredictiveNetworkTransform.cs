@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
 
     Vector3 _velocity;
     MarkerPool _markerPool;
+    int _receivedFrame;
 
     protected override void OnNetworkTransformStateUpdated
       (ref NetworkTransformState oldState, ref NetworkTransformState newState)
@@ -18,10 +20,12 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
         var dt = (newState.GetNetworkTick() - oldState.GetNetworkTick()) / tickRate;
         _velocity = (newState.GetPosition() - oldState.GetPosition()) / dt;
 
-        var latency = GetTickLatency() / tickRate;
-        _offsetXform.localPosition = _velocity * (latency - Time.deltaTime);
+        var latency = (NetworkManager.Singleton.LocalTime.Tick - newState.GetNetworkTick()) / tickRate;
+        _offsetXform.localPosition = _velocity * latency;
 
         _markerPool.PutMarker(newState.GetPosition());
+
+        _receivedFrame = Time.frameCount;
     }
 
     void Start()
@@ -29,8 +33,7 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
 
     void Update()
     {
-        if (IsServer) return;
-
-        _offsetXform.localPosition += _velocity * Time.deltaTime;
+        if (!IsServer && _receivedFrame != Time.frameCount)
+            _offsetXform.localPosition += _velocity * Time.deltaTime;
     }
 }

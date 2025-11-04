@@ -7,7 +7,7 @@ public sealed class ObjectRotation : MonoBehaviour
 
     Vector3 _prevPosition;
 
-    void Update()
+    void LateUpdate()
     {
         var delta = transform.position - _prevPosition;
         var rot = Quaternion.LookRotation(delta.normalized);
