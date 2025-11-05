@@ -10,25 +10,21 @@ public sealed class ObjectController : MonoBehaviour
 
     float _progress;
 
-    Vector3 EvaluateOffset()
+    (float, float, float) GetXZYaw()
     {
-        var width = _pathSize.x;
-        var depth = _pathSize.y;
-        var segment = _progress;
+        var (w, d, seg) = (_pathSize.x, _pathSize.y, _progress);
+        var (hw, hd) = (w / 2, d / 2);
 
-        if (segment < width)
-            return new Vector3(-0.5f * width + segment, 0f, 0.5f * depth);
+        if (seg < w) return (-hw + seg, hd, 90);
+        seg -= w;
 
-        segment -= width;
-        if (segment < depth)
-            return new Vector3(0.5f * width, 0f, 0.5f * depth - segment);
+        if (seg < d) return (hw, hd - seg, 180);
+        seg -= d;
 
-        segment -= depth;
-        if (segment < width)
-            return new Vector3(0.5f * width - segment, 0f, -0.5f * depth);
+        if (seg < w) return (hw - seg, -hd, 270);
+        seg -= w;
 
-        segment -= width;
-        return new Vector3(-0.5f * width, 0f, -0.5f * depth + segment);
+        return (-hw, -hd + seg, 0);
     }
 
     void Start()
@@ -37,6 +33,8 @@ public sealed class ObjectController : MonoBehaviour
     void FixedUpdate()
     {
         _progress = (_progress + _speed * Time.fixedDeltaTime) % Perimeter;
-        transform.position = EvaluateOffset();
+        var (x, z, ry) = GetXZYaw();
+        transform.position = new Vector3(x, 0, z);
+        transform.rotation = Quaternion.AngleAxis(ry, Vector3.up);
     }
 }

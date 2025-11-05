@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 397684101}
   - component: {fileID: 397684102}
   m_Layer: 0
-  m_Name: Rotation
+  m_Name: Object View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,13 +273,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397684100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 98069510}
-  m_Father: {fileID: 829438265}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &397684102
 MonoBehaviour:
@@ -290,10 +290,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 397684100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c972ff7980f6048ae88fadfea65d12b4, type: 3}
+  m_Script: {fileID: 11500000, guid: da182326928a834829223cac101f282b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 15
+  target: {fileID: 829438265}
+  interpolator: 2
+  positionSpeed: 80
+  rotationSpeed: 80
 --- !u!1 &517540850
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +422,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: fd1574eab3f4d41c1a137a8076be19f5, type: 2}
-    TickRate: 30
+    TickRate: 20
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
@@ -587,8 +590,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 397684101}
+  m_Children: []
   m_Father: {fileID: 466610476847410816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901228807
@@ -1292,7 +1294,7 @@ GameObject:
   - component: {fileID: 2507102023491951140}
   - component: {fileID: 7253481646852464413}
   m_Layer: 0
-  m_Name: Object
+  m_Name: Virtual Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1317,7 +1319,7 @@ MonoBehaviour:
   RotationInterpolationType: 0
   ScaleInterpolationType: 0
   PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.175
+  PositionMaxInterpolationTime: 0.15
   RotationLerpSmoothing: 1
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
@@ -1329,7 +1331,7 @@ MonoBehaviour:
   SyncPositionY: 1
   SyncPositionZ: 1
   SyncRotAngleX: 0
-  SyncRotAngleY: 0
+  SyncRotAngleY: 1
   SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
@@ -1354,5 +1356,6 @@ SceneRoots:
   - {fileID: 1602446956}
   - {fileID: 1521824487}
   - {fileID: 466610476847410816}
+  - {fileID: 397684101}
   - {fileID: 1699356403}
   - {fileID: 714875279}
