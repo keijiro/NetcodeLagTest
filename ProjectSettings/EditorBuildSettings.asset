@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Extrapolation.unity
+    guid: ff5702dfe30c34fa2a680f20ba104712
+  - enabled: 1
     path: Assets/Interpolation.unity
     guid: c3cea969692b74f238244333d60b0392
   m_configObjects: {}

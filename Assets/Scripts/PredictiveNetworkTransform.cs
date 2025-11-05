@@ -7,9 +7,8 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
     [SerializeField] bool _extrapolate = false;
     [SerializeField] Transform _offsetXform = null;
 
-    Vector3 _velocity;
+    Vector3 _velocity, _offset;
     MarkerPool _markerPool;
-    int _receivedFrame;
 
     protected override void OnNetworkTransformStateUpdated
       (ref NetworkTransformState oldState, ref NetworkTransformState newState)
@@ -22,18 +21,11 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
         var newTick = newState.GetNetworkTick();
         var localTick = NetworkManager.Singleton.LocalTime.Tick;
 
-        var dt = (newTick - oldTick) / tickRate;
+        var dt = Mathf.Max(1, newTick - oldTick) / tickRate;
         _velocity = (newState.GetPosition() - oldState.GetPosition()) / dt;
-
-        if (_extrapolate)
-        {
-            var latency = (localTick - newTick) / tickRate;
-            _offsetXform.localPosition = _velocity * latency;
-        }
+        _offset = _velocity * ((localTick - newTick) / tickRate - Time.deltaTime);
 
         _markerPool.PutMarker(newState.GetPosition());
-
-        //_receivedFrame = Time.frameCount;
     }
 
     void Start()
@@ -41,7 +33,9 @@ public sealed class PredictiveNetworkTransform : NetworkTransform
 
     void Update()
     {
-        if (!IsServer && _extrapolate && _receivedFrame != Time.frameCount)
-            _offsetXform.localPosition += _velocity * Time.deltaTime;
+        _offset += _velocity * Time.deltaTime;
+
+        if (!IsServer && _extrapolate)
+            _offsetXform.position = transform.position + _offset;
     }
 }
