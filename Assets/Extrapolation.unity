@@ -373,7 +373,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: fd1574eab3f4d41c1a137a8076be19f5, type: 2}
-    TickRate: 20
+    TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
@@ -763,9 +763,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d9db9626104da59357651088226725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PresetAsset: {fileID: 0}
+  m_PresetAsset: {fileID: 11400000, guid: ab76a0c4e03e64bb786c390d6ad01055, type: 2}
   m_PresetReference:
-    rid: 7921007208134082638
+    rid: -2
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -775,21 +775,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7921007208134082638
-      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
-      data:
-        <Name>k__BackingField: 'Mobile 4G [4G, LTE, ''13]'
-        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
-          that ping (and overall connection quality and stability) may be quite poor.
-
-
-          Expect
-          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
-          you handle reconnections.'
-        <PacketDelayMs>k__BackingField: 100
-        <PacketJitterMs>k__BackingField: 20
-        <PacketLossInterval>k__BackingField: 0
-        <PacketLossPercent>k__BackingField: 4
 --- !u!4 &1203607673
 Transform:
   m_ObjectHideFlags: 0
@@ -1359,6 +1344,7 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 0
   SlerpPosition: 0
+  _extrapolate: 1
   _offsetXform: {fileID: 829438265}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

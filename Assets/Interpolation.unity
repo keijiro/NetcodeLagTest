@@ -527,9 +527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d9db9626104da59357651088226725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PresetAsset: {fileID: 0}
+  m_PresetAsset: {fileID: 11400000, guid: ab76a0c4e03e64bb786c390d6ad01055, type: 2}
   m_PresetReference:
-    rid: 7921007208134082637
+    rid: -2
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -539,21 +539,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7921007208134082637
-      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
-      data:
-        <Name>k__BackingField: 'Mobile 4G [4G, LTE, ''13]'
-        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
-          that ping (and overall connection quality and stability) may be quite poor.
-
-
-          Expect
-          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
-          you handle reconnections.'
-        <PacketDelayMs>k__BackingField: 100
-        <PacketJitterMs>k__BackingField: 20
-        <PacketLossInterval>k__BackingField: 0
-        <PacketLossPercent>k__BackingField: 4
 --- !u!4 &714875279
 Transform:
   m_ObjectHideFlags: 0
@@ -1107,6 +1092,52 @@ Transform:
   - {fileID: 1272491451}
   m_Father: {fileID: 1521824487}
   m_LocalEulerAnglesHint: {x: 10, y: -80, z: 0}
+--- !u!1 &1699356401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699356403}
+  - component: {fileID: 1699356402}
+  m_Layer: 0
+  m_Name: Markers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1699356402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699356401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aeacf9827f84afa8811404196ce39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3108987808390787924, guid: 65e6a5ab80aab41049176e723d0678b3, type: 3}
+  _maxInstances: 16
+--- !u!4 &1699356403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699356401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739916310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,17 +1307,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7253481646852464412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f8618504220144b4910caf4e88175d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 0
+  NetworkTransformExpanded: 1
   AutoOwnerAuthorityTickOffset: 1
   PositionInterpolationType: 0
   RotationInterpolationType: 0
   ScaleInterpolationType: 0
   PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.15
+  PositionMaxInterpolationTime: 0.175
   RotationLerpSmoothing: 1
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
@@ -1313,6 +1344,8 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+  _extrapolate: 0
+  _offsetXform: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1321,4 +1354,5 @@ SceneRoots:
   - {fileID: 1602446956}
   - {fileID: 1521824487}
   - {fileID: 466610476847410816}
+  - {fileID: 1699356403}
   - {fileID: 714875279}

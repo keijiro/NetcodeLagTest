@@ -34,9 +34,9 @@ public sealed class ObjectController : MonoBehaviour
     void Start()
       => enabled = GetComponent<NetworkTransform>().IsServer;
 
-    void Update()
+    void FixedUpdate()
     {
-        _progress = (_progress + _speed * Time.deltaTime) % Perimeter;
+        _progress = (_progress + _speed * Time.fixedDeltaTime) % Perimeter;
         transform.position = EvaluateOffset();
     }
 }
